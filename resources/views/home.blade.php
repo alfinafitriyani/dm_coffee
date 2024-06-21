@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>DMCOFFE</title>
+    <title>DMCOFFEE</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -30,6 +30,13 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
 
+    <!-- Fonts -->
+    {{-- <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> --}}
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 
 </head>
 
@@ -39,7 +46,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+            <a href="" class="logo d-flex align-items-center me-auto me-lg-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <img src="assets/img/logo.png" alt="">
                 <!--<h1>DM COFFE<span>.</span></h1>-->
@@ -57,7 +64,44 @@
                     <li class="login-register">
                         @if (Route::has('login'))
                             @auth
-                        <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                        <li>
+                            <div class="hidden sm:flex sm:items-center sm:ms-6">
+                                <x-dropdown align="right" width="48">
+                                    <x-slot name="trigger">
+                                        <button
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                            <div>{{ Auth::user()->name }}</div>
+
+                                            <div class="ms-1">
+                                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd"
+                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </button>
+                                    </x-slot>
+
+                                    <x-slot name="content">
+                                        <x-dropdown-link :href="route('profile.edit')">
+                                            {{ __('Profile') }}
+                                        </x-dropdown-link>
+
+                                        <!-- Authentication -->
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+
+                                            <x-dropdown-link :href="route('logout')"
+                                                onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                                {{ __('Log Out') }}
+                                            </x-dropdown-link>
+                                        </form>
+                                    </x-slot>
+                                </x-dropdown>
+                            </div>
+                        </li>
                     @else
                         <li> <a href="{{ route('login') }}">Login</a></li>
                         @if (Route::has('register'))
@@ -68,7 +112,8 @@
                     </li>
                 </ul>
             </nav><!-- .navbar -->
-
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
 
 
@@ -91,7 +136,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-                    <img src="assets/img/menu/hotcoffee-2.png" class="img-fluid" alt="" data-aos="zoom-in"
+                    <img src="assets/img/dmcoffee.png" class="img-fluid" alt="" data-aos="zoom-in"
                         data-aos-delay="300">
                 </div>
             </div>
@@ -159,18 +204,16 @@
 
                 <div class="row gy-4">
 
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4" data-aos="fade-up">
                         <div class="why-box">
-                            <h3>Kenapa Memilih Kami?</h3>
+                            <h3>Kalian Juga Bisa Order Lewat GrabFood, GoFood, Maupun ShopeeFood lo! Ayo Order Sekarang!
+                            </h3>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus
-                                optio ad corporis.
+
                             </p>
-                            <div class="text-center">
+                            {{-- <div class="text-center">
                                 <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div><!-- End Why Box -->
 
@@ -179,28 +222,29 @@
 
                             <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
                                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                                    <i class="bi bi-clipboard-data"></i>
-                                    <h4>Corporis voluptates officia eiusmod</h4>
-                                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut
-                                        aliquip</p>
+                                    <a href="https://r.grab.com/g/6-20240604_112745_ce5018db95d58666_MEXMPS-6-C24EJNVHFACYCA"
+                                        target="_blank">
+                                        <img src="assets/img/grabfood.png" alt="GrabFood Logo"
+                                            style="width: 250px; height: auto;">
+                                    </a>
                                 </div>
                             </div><!-- End Icon Box -->
 
                             <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
-                                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                                    <i class="bi bi-gem"></i>
-                                    <h4>Ullamco laboris ladore pan</h4>
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                        deserunt</p>
+                                <div class="icon-box d-flex flex-column justify-content-center align-items-center ">
+                                    <a href="https://gofood.link/a/D2M8FBf" target="_blank">
+                                        <img src="assets/img/gofood.png" alt="GoFood Logo"
+                                            style="width: 250px; height: auto;">
+                                    </a>
                                 </div>
-                            </div><!-- End Icon Box -->
-
-                            <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
-                                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                                    <i class="bi bi-inboxes"></i>
-                                    <h4>Labore consequatur incidid dolore</h4>
-                                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere
-                                    </p>
+                            </div>
+                            <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                                <div class="icon-box d-flex flex-column justify-content-center align-items-center ">
+                                    <a href="https://r.grab.com/g/6-20240604_112745_ce5018db95d58666_MEXMPS-6-C24EJNVHFACYCA"
+                                        target="_blank">
+                                        <img src="assets/img/shopeefood.png" alt="ShopeeFood Logo"
+                                            style="width: 250px; height: auto;">
+                                    </a>
                                 </div>
                             </div><!-- End Icon Box -->
 
@@ -211,6 +255,7 @@
 
             </div>
         </section><!-- End Why Us Section -->
+        <!-- End Why Us Section -->
 
         <!-- ======= Stats Counter Section ======= -->
         <section id="stats-counter" class="stats-counter">
@@ -809,7 +854,7 @@
 
                 <div class="section-header">
                     <h2>Reservasi</h2>
-                    <p>Book <span>Your Stay</span> With Us</p>
+                    <p>Reservasi <span> Sekarang </span></p>
                 </div>
 
                 <div class="row g-0">
@@ -823,52 +868,52 @@
                             <div class="row gy-4">
                                 <div class="col-lg-4 col-md-6">
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Your Name" data-rule="minlen:4"
+                                        placeholder="Nama" data-rule="minlen:4"
                                         data-msg="Please enter at least 4 chars">
                                     <div class="validate"></div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email" data-rule="email"
-                                        data-msg="Please enter a valid email">
+                                        placeholder="Email" data-rule="email" data-msg="Please enter a valid email">
                                     <div class="validate"></div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <input type="text" class="form-control" name="phone" id="phone"
-                                        placeholder="Your Phone" data-rule="minlen:4"
+                                        placeholder="Telepon" data-rule="minlen:4"
                                         data-msg="Please enter at least 4 chars">
                                     <div class="validate"></div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <input type="text" name="date" class="form-control" id="date"
-                                        placeholder="Date" data-rule="minlen:4"
+                                        placeholder="Tanggal" data-rule="minlen:4"
                                         data-msg="Please enter at least 4 chars">
                                     <div class="validate"></div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <input type="text" class="form-control" name="time" id="time"
-                                        placeholder="Time" data-rule="minlen:4"
+                                        placeholder="Waktu" data-rule="minlen:4"
                                         data-msg="Please enter at least 4 chars">
                                     <div class="validate"></div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <input type="number" class="form-control" name="people" id="people"
-                                        placeholder="# of people" data-rule="minlen:1"
+                                        placeholder="Jumlah Orang" data-rule="minlen:1"
                                         data-msg="Please enter at least 1 chars">
                                     <div class="validate"></div>
                                 </div>
                             </div>
                             <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+                                <textarea class="form-control" name="message" rows="5" placeholder="Pesan"></textarea>
                                 <div class="validate"></div>
                             </div>
                             <div class="mb-3">
                                 <div class="loading">Loading</div>
                                 <div class="error-message"></div>
-                                <div class="sent-message">Your booking request was sent. We will call back or send an
-                                    Email to confirm your reservation. Thank you!</div>
+                                <div class="sent-message">Permintaan pemesanan Anda telah dikirim. Kami akan
+                                    menghubungi kembali atau mengirim Email untuk mengonfirmasi reservasi Anda. Terima
+                                    kasih!</div>
                             </div>
-                            <div class="text-center"><button type="submit">Book a Table</button></div>
+                            <div class="text-center"><button type="submit">KIRIM</button></div>
                         </form>
                     </div><!-- End Reservation Form -->
 
@@ -882,8 +927,8 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">
-                    <h2>gallery</h2>
-                    <p>Check <span>Our Gallery</span></p>
+                    <h2>galeri</h2>
+                    <p>Galeri <span>Kami</span></p>
                 </div>
 
                 <div class="gallery-slider swiper">
@@ -936,8 +981,8 @@
 
                 <div class="row gy-4">
 
-                    <div class="col-md-6">
-                        <div class="info-item  d-flex align-items-center">
+                    <div class="col-md-4">
+                        <div class="info-item d-flex align-items-center">
                             <i class="icon bi bi-map flex-shrink-0"></i>
                             <div>
                                 <h3>Alamat</h3>
@@ -947,8 +992,9 @@
                         </div>
                     </div><!-- End Info Item -->
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="info-item d-flex align-items-center">
+                            <a href="mailto:dmcoffee.jepara@gmail.com"></a>
                             <i class="icon bi bi-envelope flex-shrink-0"></i>
                             <div>
                                 <h3>Email</h3>
@@ -957,29 +1003,56 @@
                         </div>
                     </div><!-- End Info Item -->
 
-                    <div class="col-md-6">
-                        <div class="info-item  d-flex align-items-center">
-                            <i class="icon bi bi-telephone flex-shrink-0"></i>
-                            <div>
-                                <h3>Telepon</h3>
-                                <p>0852-3095-5158</p>
+                    <div class="col-md-4">
+                        <div class="info-item d-flex align-items-center">
+                            <a href="https://wa.me/6285230955158" target="_blank">
+                                <i class="icon bi bi-telephone flex-shrink-0"></i>
+                                <div>
+                                    <h3>Telepon</h3>
+                                    <p>0852-3095-5158
+                            </a></p>
+                        </div>
+                    </div>
+                </div><!-- End Info Item -->
+
+                <div class="col-md-4">
+                    <div class="info-item d-flex align-items-center">
+                        <i class="icon bi bi-share flex-shrink-0"></i>
+                        <div>
+                            <h3>Buka</h3>
+                            <div><strong>Senin-Jumat:</strong> 11.00 - 22.00
+                                <br><strong>Sabtu-Minggu:</strong> 10.00 - 23.00
                             </div>
                         </div>
-                    </div><!-- End Info Item -->
+                    </div>
+                </div><!-- End Info Item -->
 
-                    <div class="col-md-6">
-                        <div class="info-item  d-flex align-items-center">
-                            <i class="icon bi bi-share flex-shrink-0"></i>
+                <div class="col-md-4">
+                    <div class="info-item d-flex align-items-center">
+                        <a href="https://www.instagram.com/dmcoffee.jepara?igsh=MThhdGQ3ZDk2dTFh" target="_blank">
+                            <i class="icon bi bi-instagram flex-shrink-0"></i>
                             <div>
-                                <h3>Buka</h3>
-                                <div><strong>Senin-Jumat:</strong> 11.00 - 22.00
-                                    <br><strong>Sabtu-minggu:</strong> 10.00 - 23.00
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Info Item -->
-
+                                <h3>Instagram</h3>
+                                <p>dmcoffee.jepara
+                        </a></p>
+                    </div>
                 </div>
+            </div><!-- End Info Item -->
+
+            <div class="col-md-4">
+                <div class="info-item d-flex align-items-center">
+                    <a href="https://www.facebook.com/DMCoffeeJepara" target="_blank">
+                        <i class="icon bi bi-facebook flex-shrink-0"></i>
+                        <div>
+                            <h3>Facebook</h3>
+                            <p>DMCoffeJepara
+                    </a></p>
+                </div>
+            </div>
+            </div><!-- End Info Item -->
+
+            </div>
+
 
             </div>
         </section><!-- End Contact Section -->
@@ -1040,7 +1113,8 @@
 
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>Yummy</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>Alfina Fitriyani 2024 | RPL A POLIBANG</span></strong>. All Rights
+                Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->

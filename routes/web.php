@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +19,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/home', [HomeController::class, "index"]);
+// Route::get('/dashboard', [HomeController::class, "index"]);
 
+Route::get('/users', [AdminController::class, "user"]);
 Route::get('/redirects', [HomeController::class, "redirects"]);
 
 Route::get('/dashboard', function () {
