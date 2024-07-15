@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -130,4 +130,85 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}
+
+// Fungsi Pengelolaan Jus
+public function jusIndex()
+{
+$juss = Jus::all();
+return view('admin.menu-jus.jus', compact('juss'));
+}
+
+// Menampilkan form tambah jus
+public function jusCreate()
+{
+return view('admin.menu-jus.create');
+}
+
+// Menyimpan jus baru
+public function jusStore(Request $request)
+{
+$request->validate([
+'nama' => 'required',
+'deskripsi' => 'nullable',
+'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+'harga' => 'required|numeric',
+]);
+
+$jus = new jus();
+$jus->nama = $request->nama;
+$jus->deskripsi = $request->deskripsi;
+if ($request->hasFile('gambar')) {
+$imageName = time() . '.' . $request->gambar->extension();
+$request->gambar->move(public_path('images'), $imageName);
+$jus->gambar = $imageName;
+}
+$jus->harga = $request->harga;
+$jus->save();
+
+return redirect()->route('admin.jus.index')->with('success', 'jus berhasil ditambahkan.');
+}
+
+// Menampilkan form edit jus
+public function jusEdit($id)
+{
+$jus = jus::find($id);
+return view('admin.menu-jus.editjus', compact('jus'));
+}
+
+// Mengupdate data jus
+public function jusUpdate(Request $request, $id)
+{
+$request->validate([
+'nama' => 'required',
+'deskripsi' => 'nullable',
+'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+'harga' => 'required|numeric',
+]);
+
+$jus = Jus::find($id);
+$jus->nama = $request->nama;
+$jus->deskripsi = $request->deskripsi;
+if ($request->hasFile('gambar')) {
+$imageName = time() . '.' . $request->gambar->extension();
+$request->gambar->move(public_path('images'), $imageName);
+$jus->gambar = $imageName;
+}
+$jus->harga = $request->harga;
+$jus->save();
+
+return redirect()->route('admin.jus.index')->with('success', 'jus berhasil diupdate.');
+}
+
+// Menghapus jus
+public function jusDestroy($id)
+{
+$jus = Jus::find($id);
+if ($jus) {
+$jus->delete();
+return redirect()->route('admin.jus.index')->with('success', 'jus berhasil dihapus.');
+} else {
+return redirect()->route('admin.jus.index')->with('error', 'jus tidak ditemukan.');
+}
+}
+}

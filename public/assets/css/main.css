@@ -1,16 +1,16 @@
 
 /* Fonts */
-:root {
+/* :root {
   --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-primary: "Amatic SC", cursive;
+  --font-primary: "sans-serif", cursive;
   --font-secondary: "Inter", sans-serif;
-}
+} */
 
 /* Colors */
 :root {
   --color-default: #212529;
   --color-primary: #ce1212;
-  --color-secondary: #37373f;
+  --color-secondary: #212529;
 }
 
 /* Smooth scroll behavior */
@@ -77,8 +77,8 @@ section {
 
 .section-header p {
   margin: 0;
-  font-size: 48px;
-  font-weight: 400;
+  font-size: 28px;
+  font-weight: 700;
   font-family: var(--font-primary);
 }
 
@@ -321,7 +321,7 @@ section {
     padding: 0 3px;
     font-family: var(--font-secondary);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     color: #7f7f90;
     white-space: nowrap;
     transition: 0.3s;
@@ -386,7 +386,7 @@ section {
     padding: 10px 20px;
     font-size: 15px;
     text-transform: none;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .navbar .dropdown ul a i {
@@ -473,7 +473,7 @@ section {
     font-family: var(--font-secondary);
     border-bottom: 2px solid rgba(255, 255, 255, 0.8);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     color: #7f7f90;
     white-space: nowrap;
     transition: 0.3s;
@@ -843,7 +843,6 @@ section {
   font-size: 18px;
   font-weight: 400;
   margin: 0;
-  font-family: var(--font-secondary);
 }
 
 @media (max-width: 575px) {
@@ -872,9 +871,9 @@ section {
   margin-bottom: 0;
 }
 
-.menu .tab-content .tab-header h3 {
-  font-size: 36px;
-  font-weight: 600;
+.menu .tab-content .tab-header h4 {
+  font-size: 18px;
+  font-weight: 700;
   color: var(--color-primary);
 }
 
@@ -884,17 +883,16 @@ section {
 }
 
 .menu .tab-content .menu-item .menu-img {
-  padding: 0 60px;
-  margin-bottom: 15px;
+  padding: 0 50px;
+  margin-bottom: 10px;
 }
 
-.menu .tab-content .menu-item h4 {
+.menu .tab-content .menu-item h3 {
   font-size: 22px;
-  font-weight: 500;
-  color: var(--color-secondary);
-  font-family: var(--font-secondary);
-  font-weight: 30px;
-  margin-bottom: 5px;
+  font-weight: 800;
+
+  font-weight: 50px;
+  margin-bottom: 10px;
 }
 
 .menu .tab-content .menu-item .deskripsi {
@@ -908,7 +906,108 @@ section {
   font-weight: 700;
   color: var(--color-primary);
 }
+     /*---------------------------------------
+     MENU
+  -----------------------------------------*/
+  #menu {
+    padding-bottom: 0;
+}
 
+#menu .container {
+    width: 100%;
+}
+
+#menu .col-md-4 {
+    margin: 0;
+    padding: 0;
+}
+
+.menu-thumb img {
+    width: 100%;
+    transition: 0.5s;
+}
+
+.menu-thumb:hover img {
+    transform: scale(1.15);
+}
+
+#menu .menu-thumb {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    width: 102%;
+}
+
+.menu-thumb .menu-info {
+    position: absolute;
+    top: 60%;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    text-align: left;
+    padding: 25px 30px;
+    transition: 0.5s 0.2s;
+}
+
+.menu-info .menu-item {
+    float: left;
+}
+
+.menu-info .menu-price {
+    float: right;
+}
+
+.menu-info .menu-price span {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: normal;
+    display: block;
+    margin-top: 10px;
+}
+
+.menu-thumb .menu-info h3,
+.menu-thumb .menu-info p,
+.menu-thumb .menu-info span {
+    transform: translateY(100%);
+    opacity: 0;
+    display: block;
+    transition: 0.5s 0.2s;
+    color: #ffffff;
+    z-index: 2;
+    position: relative;
+}
+
+.menu-thumb .menu-info h3 {
+    margin-top: 0;
+}
+
+.menu-thumb .menu-info p {
+    color: #d9d9d9;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.menu-thumb:hover .menu-info h3,
+.menu-thumb:hover .menu-info p,
+.menu-thumb:hover .menu-info span {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.menu-thumb:hover .menu-info {
+    background: rgba(0, 0, 0, 0.8);
+}
+/*--------------------------------------------------------------
+# Catering Section
+--------------------------------------------------------------*/
+.card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.
 /*--------------------------------------------------------------
 # Testimonials Section
 --------------------------------------------------------------*/
@@ -1210,7 +1309,7 @@ section {
   text-align: left;
   padding: 15px;
   margin-bottom: 24px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .book-a-table .php-email-form .sent-message {
@@ -1220,7 +1319,7 @@ section {
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .book-a-table .php-email-form .loading {
@@ -1295,13 +1394,13 @@ section {
 }
 
 .gallery .swiper-pagination {
-  margin-top: 20px;
+  margin-top: 40px;
   position: relative;
 }
 
 .gallery .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background-color: #d1d1d7;
   opacity: 1;
 }
@@ -1316,7 +1415,7 @@ section {
 
 @media (min-width: 992px) {
   .gallery .swiper-wrapper {
-    padding: 40px 0;
+    padding: 70px 0;
   }
 
   .gallery .swiper-slide-active {
@@ -1324,7 +1423,7 @@ section {
     padding: 4px;
     background: #fff;
     z-index: 1;
-    transform: scale(1.2);
+    transform: scale(1.8);
   }
 }
 
@@ -1395,7 +1494,7 @@ section {
   background: #df1529;
   text-align: left;
   padding: 15px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .contact .php-email-form .error-message br+br {
@@ -1408,7 +1507,7 @@ section {
   background: #059652;
   text-align: center;
   padding: 15px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .contact .php-email-form .loading {
@@ -1525,7 +1624,7 @@ section {
   transition: 0.5s;
   margin-left: 25px;
   color: var(--font-secondary);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .hero .btn-watch-video i {
